@@ -1,0 +1,21 @@
+/* Styles for the Authentication component */
+.authentication-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+}
+
+.authentication-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.authentication-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add more styles specific to the Authentication component */
+

@@ -1,0 +1,21 @@
+/* Styles for the Client Accounts component */
+.client-accounts-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+}
+
+.client-accounts-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.client-accounts-details {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add more styles specific to the Client Accounts component */
+
