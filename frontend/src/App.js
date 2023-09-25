@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import './App.css';
-import AppRouter from './Router'; // Import the Router component
+import AppRouter from './components/Router'; // Import the Router component
 
 function App() {
   return (

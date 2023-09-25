@@ -1,35 +1,4 @@
-my-app/
-  ├── src/
-  │   ├── components/         // React components
-  │   │   ├── ClientData/     // Components related to client data management
-  │   │   ├── AdminAccounts/  // Components for admin account management
-  │   │   ├── ClientAccounts/ // Components for client account interfaces
-  │   │   ├── Authentication/ // Components for login and registration
-  │   │   ├── Common/         // Reusable components used across the app
-  │   │   └── ...
-  │   ├── styles/             // CSS or styling files
-  │   │   ├── main.css        // Main styles
-  │   │   ├── client-data.css // Styles for client data management
-  │   │   ├── admin-accounts.css // Styles for admin accounts
-  │   │   ├── client-accounts.css // Styles for client accounts
-  │   │   ├── authentication.css // Styles for authentication
-  │   │   └── ...
-  │   ├── assets/             // Images, fonts, and other assets
-  │   ├── App.js              // Main React component
-  │   ├── index.js            // Entry point for the application
-  │   └── ...
-  ├── public/
-  │   ├── index.html          // HTML template
-  │   ├── favicon.ico         // Favicon
-  │   └── ...
-  ├── README.md              // Project documentation
-  ├── package.json           // Dependencies and scripts
-  └── ...
-
-
-
-
-my-app/
+frontend/
   ├── src/
   │   ├── components/
   │   │   ├── ClientData/
@@ -63,6 +32,8 @@ my-app/
   │   │   │   ├── Footer.js
   │   │   │   ├── Button.js
   │   │   │   ├── ...
+  │   │   ├── HomePage.js     
+  │   │   ├── Router.js       
   │   │   └── ...
   │   ├── styles/
   │   │   ├── main.css
@@ -83,4 +54,3 @@ my-app/
   ├── README.md
   ├── package.json
   └── ...
-

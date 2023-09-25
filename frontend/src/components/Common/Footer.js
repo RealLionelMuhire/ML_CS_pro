@@ -2,14 +2,12 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer>
-      {/* Common: Footer */}
-      <p>
-        {/* Footer content or copyright information */}
-      </p>
+    <footer className="footer">
+      <div className="container text-center">
+        <p>&copy; {new Date().getFullYear()} ML Corporate Services</p>
+      </div>
     </footer>
   );
 }
 
 export default Footer;
-

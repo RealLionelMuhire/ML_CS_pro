@@ -1,20 +1,17 @@
 // src/Router.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import App from './App';
+import { Route, Routes } from 'react-router-dom'; // Remove import of BrowserRouter
+import App from '../App';
 import HomePage from './HomePage';
 
 function AppRouter() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/app" component={App} />
-        {/* Add more routes for other components/pages */}
-      </Switch>
-    </Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/app" element={<App />} />
+      {/* Add more routes for other components/pages */}
+    </Routes>
   );
 }
 
 export default AppRouter;
-
