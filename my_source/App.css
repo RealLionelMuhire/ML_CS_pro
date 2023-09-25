@@ -1,0 +1,12 @@
+/* Styles for the App component */
+.App {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+

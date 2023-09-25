@@ -1,0 +1,86 @@
+my-app/
+  ├── src/
+  │   ├── components/         // React components
+  │   │   ├── ClientData/     // Components related to client data management
+  │   │   ├── AdminAccounts/  // Components for admin account management
+  │   │   ├── ClientAccounts/ // Components for client account interfaces
+  │   │   ├── Authentication/ // Components for login and registration
+  │   │   ├── Common/         // Reusable components used across the app
+  │   │   └── ...
+  │   ├── styles/             // CSS or styling files
+  │   │   ├── main.css        // Main styles
+  │   │   ├── client-data.css // Styles for client data management
+  │   │   ├── admin-accounts.css // Styles for admin accounts
+  │   │   ├── client-accounts.css // Styles for client accounts
+  │   │   ├── authentication.css // Styles for authentication
+  │   │   └── ...
+  │   ├── assets/             // Images, fonts, and other assets
+  │   ├── App.js              // Main React component
+  │   ├── index.js            // Entry point for the application
+  │   └── ...
+  ├── public/
+  │   ├── index.html          // HTML template
+  │   ├── favicon.ico         // Favicon
+  │   └── ...
+  ├── README.md              // Project documentation
+  ├── package.json           // Dependencies and scripts
+  └── ...
+
+
+
+
+my-app/
+  ├── src/
+  │   ├── components/
+  │   │   ├── ClientData/
+  │   │   │   ├── CentralizedRepository.js
+  │   │   │   ├── AdmissionProcess.js
+  │   │   │   ├── PermissionManagement.js
+  │   │   │   ├── ClientDocumentation.js
+  │   │   │   ├── Collaboration.js
+  │   │   │   ├── AlarmingAndAlerts.js
+  │   │   │   ├── DataExtraction.js
+  │   │   │   ├── SecurityAndPrivacy.js
+  │   │   │   ├── AuditTrail.js
+  │   │   │   ├── WorkDoneTracker.js
+  │   │   │   └── ...
+  │   │   ├── AdminAccounts/
+  │   │   │   ├── Level1Administrator.js
+  │   │   │   ├── Level2Administrator.js
+  │   │   │   ├── Level3Administrator.js
+  │   │   │   └── ...
+  │   │   ├── ClientAccounts/
+  │   │   │   ├── ClientAccount.js
+  │   │   │   ├── AppointmentScheduling.js
+  │   │   │   ├── PersonalRecords.js
+  │   │   │   ├── ...
+  │   │   ├── Authentication/
+  │   │   │   ├── Login.js
+  │   │   │   ├── Registration.js
+  │   │   │   └── ...
+  │   │   ├── Common/
+  │   │   │   ├── Header.js
+  │   │   │   ├── Footer.js
+  │   │   │   ├── Button.js
+  │   │   │   ├── ...
+  │   │   └── ...
+  │   ├── styles/
+  │   │   ├── main.css
+  │   │   ├── client-data.css
+  │   │   ├── admin-accounts.css
+  │   │   ├── client-accounts.css
+  │   │   ├── authentication.css
+  │   │   └── ...
+  │   ├── assets/
+  │   │   ├── (Images and other assets)
+  │   ├── App.js
+  │   ├── index.js
+  │   └── ...
+  ├── public/
+  │   ├── index.html
+  │   ├── favicon.ico
+  │   └── ...
+  ├── README.md
+  ├── package.json
+  └── ...
+

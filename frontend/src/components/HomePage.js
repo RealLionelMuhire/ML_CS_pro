@@ -1,5 +1,6 @@
 // src/components/HomePage.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Header from './Common/Header';
 import Footer from './Common/Footer';
 
@@ -9,19 +10,26 @@ function HomePage() {
       <Header /> {/* Include the Header component */}
       <main>
         <section className="hero">
-          <h1>Welcome to ML Corporate Services</h1>
-          <p>Your trusted partner in client management and more.</p>
+          <h2>Welcome</h2>
         </section>
-        <section className="features">
-          <div className="feature">
-            <h2>Client Data Management</h2>
-            <p>Centralized repository for client data.</p>
+        
+
+        <section className="login-section">
+          <div className="client-login">
+            <h2>Login or Signup as a New Client</h2>
+            <Link to="/client-login">
+              <button className="btn btn-primary">Client Login</button>
+            </Link>
+            <Link to="/client-signup">
+              <button className="btn btn-secondary">Client Signup</button>
+            </Link>
           </div>
-          <div className="feature">
-            <h2>Admission Process</h2>
-            <p>Streamlined client admission process.</p>
+          <div className="admin-login">
+            <h2>Login as an Administrator</h2>
+            <Link to="/admin-login">
+              <button className="btn btn-info">Admin Login</button>
+            </Link>
           </div>
-          {/* Add more feature sections as needed */}
         </section>
       </main>
       <Footer /> {/* Include the Footer component */}
