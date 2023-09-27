@@ -1,0 +1,32 @@
+/* Custom styles for HomePage component */
+
+/* Apply Bootstrap styles to the container */
+.container {
+  padding: 20px;
+}
+
+/* Style for the "Do you have an account?" section */
+.jumbotron {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style for the buttons in the "Do you have an account?" section */
+.btn-group {
+  margin-top: 20px;
+}
+
+/* Style for the "Welcome Back" and "Welcome to ML CORPORATE SERVICES" sections */
+.client-login,
+.client-registration {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style for the "Login as Administrator" link */
+.admin-login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+

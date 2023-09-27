@@ -1,41 +1,25 @@
 frontend/
   ├── src/
   │   ├── components/
-  │   │   ├── ClientData/
-  │   │   │   ├── CentralizedRepository.js
-  │   │   │   ├── AdmissionProcess.js
-  │   │   │   ├── PermissionManagement.js
-  │   │   │   ├── ClientDocumentation.js
-  │   │   │   ├── Collaboration.js
-  │   │   │   ├── AlarmingAndAlerts.js
-  │   │   │   ├── DataExtraction.js
-  │   │   │   ├── SecurityAndPrivacy.js
-  │   │   │   ├── AuditTrail.js
-  │   │   │   ├── WorkDoneTracker.js
-  │   │   │   └── ...
-  │   │   ├── AdminAccounts/
-  │   │   │   ├── Level1Administrator.js
-  │   │   │   ├── Level2Administrator.js
-  │   │   │   ├── Level3Administrator.js
-  │   │   │   └── ...
-  │   │   ├── ClientAccounts/
-  │   │   │   ├── ClientAccount.js
-  │   │   │   ├── AppointmentScheduling.js
-  │   │   │   ├── PersonalRecords.js
-  │   │   │   ├── ...
   │   │   ├── Authentication/
-  │   │   │   ├── Login.js
-  │   │   │   ├── Registration.js
-  │   │   │   └── ...
+  │   │   │   ├── ClientLoginPage.js
+  │   │   │   ├── ClientRegistrationPage.js
+  │   │   │   ├── AdminAuthentication/
+  │   │   │   │   ├── AdminLoginPage.js
+  │   │   │   │   ├── AdminRegistrationPage.js
+  │   │   │   │   └── ... // Other admin authentication-related components
   │   │   ├── Common/
   │   │   │   ├── Header.js
   │   │   │   ├── Footer.js
   │   │   │   ├── Button.js
-  │   │   │   ├── ...
+  │   │   │   └── ...
   │   │   ├── HomePage.js     
   │   │   ├── Router.js       
   │   │   └── ...
   │   ├── styles/
+  │   │   ├── common/
+  │   │   │   ├── common.css
+  │   │   │   ├── other-common-styles.css
   │   │   ├── main.css
   │   │   ├── client-data.css
   │   │   ├── admin-accounts.css
