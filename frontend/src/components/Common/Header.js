@@ -1,53 +1,35 @@
-// src/components/Common/Header.js
 import React from 'react';
 
 function Header() {
   return (
     <header className="header">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          Navbar
+      <nav className="navbar navbar-dark bg-dark">
+        <a className="navbar-brand" href="https://mlcorporateservices.com//home">
+          ML Corporate Services
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="/">
-                Home <span className="sr-only">(current)</span>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link text-white" href="#">
+                Admin
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
+              <a className="nav-link text-white" href="#">
+                Registration Desk
               </a>
             </li>
-            {/* ... Other navbar items */}
+            <li className="nav-item">
+              <a className="nav-link text-white" href="#">
+                Logout
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-white" href="#">
+                User
+              </a>
+            </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </nav>
     </header>

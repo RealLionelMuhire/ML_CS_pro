@@ -96,15 +96,12 @@ function ClientRegistrationPage() {
                 </div>
 
                 <div className="field checkbox-field">
-                  <input type="checkbox" name="user[remember_me]" id="user_remember_me" />
-                  <label htmlFor="user_remember_me">Remember me</label>
+                  <input type="checkbox" name="user[agree_terms]" id="user_agree_terms" />
+                  <label htmlFor="user_agree_terms"><a href='#'>Agree with terms and conditions</a></label>
                 </div>
 
                 <div className="actions">
                   <input type="submit" name="commit" value="Register" className="btn btn-primary" />
-                </div>
-                <div className="actions">
-                  <input type="submit" name="commit" value="Add More Information" className="btn btn-primary" />
                 </div>
               </form>
             </div>
