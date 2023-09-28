@@ -8,7 +8,7 @@ function ClientLoginPage() {
     <div className="login-page">
       <Header />
       <main>
-        <div className="container">
+        <div className="login-container">
           <article className="client-login">
             <div className="login-form">
               <h2 className="logo">WELCOME TO ML CORPORATE SERVICES</h2>

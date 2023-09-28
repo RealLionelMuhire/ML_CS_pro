@@ -1,8 +1,11 @@
-.container {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    height: 1550px;
+.container {max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 4px solid #545151;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    height: 1500px;
 }
 
 .registration-form {

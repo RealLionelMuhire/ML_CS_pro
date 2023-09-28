@@ -13,7 +13,7 @@ function HomePage() {
     <div className="home-page">
       <Header />
       <main>
-        <div className="container">
+        <div className="my_container">
           {/* Conditional rendering based on user's choice */}
           {userChoice === 'None' && (
             <div className="account-header">
@@ -37,9 +37,11 @@ function HomePage() {
             <div className="client-registration">
               <h2>Welcome to ML CORPORATE SERVICES</h2>
               {/* Link to the ClientRegistrationPage component */}
+              <div class="button-to-account">
               <Link to="/client-registration">
                 <button className="btn btn-secondary">Create a new account</button>
               </Link>
+              </div>
             </div>
           )}
 
@@ -48,9 +50,11 @@ function HomePage() {
             <div className="client-registration">
               <h2>Welcome to Back ML CORPORATE SERVICES</h2>
               {/* Link to the ClientRegistrationPage component */}
+              <div class="button-to-account">
               <Link to="/client-login">
                 <button className="btn btn-secondary">Login</button>
               </Link>
+              </div>
             </div>
           )}
 
