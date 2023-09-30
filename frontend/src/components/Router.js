@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './HomePage';
 import ClientLoginPage from './Authentication/ClientAuthentication/ClientLoginPage';
 import ClientRegistrationPage from './Authentication/ClientAuthentication/ClientRegistrationPage';
-//import ClientRegistrationPage from './Authentication/ClientAuthentication/CompanyRegistration';
 import AdminLoginPage from './Authentication/AdminAuthentication/AdminLoginPage';
 import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminRegistrationPage';
 
