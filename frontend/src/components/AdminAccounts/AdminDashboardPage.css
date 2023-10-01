@@ -1,0 +1,45 @@
+/* AdminDashboardPage.css */
+
+.dashboard-page {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    background-color: #fff; /* Change to your desired background color */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .option {
+    border: 5px solid #000; /* Thick border */
+    padding: 20px;
+    text-align: center;
+    background-color: #D3D3D3; /* Light Grey */
+    color: #00008B; /* Deep Blue */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Box shadow */
+    transition: background-color 0.3s; /* Transition effect */
+    font-family: Arial, sans-serif; /* Same font for icons and text */
+    border-radius: 50%; /* Round elements */
+  }
+  
+  .option:hover {
+    background-color: #90EE90; /* Light Green */
+  }
+  
+  .fa {
+    color: #00008B; /* Deep Blue */
+    font-size: 48px; /* Larger icons */
+  }
+  

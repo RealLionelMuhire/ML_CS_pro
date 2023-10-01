@@ -6,6 +6,7 @@ import ClientLoginPage from './Authentication/ClientAuthentication/ClientLoginPa
 import ClientRegistrationPage from './Authentication/ClientAuthentication/ClientRegistrationPage';
 import AdminLoginPage from './Authentication/AdminAuthentication/AdminLoginPage';
 import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminRegistrationPage';
+import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
 
 function AppRouter() {
   return (
@@ -15,6 +16,7 @@ function AppRouter() {
       <Route path="/client-registration" element={<ClientRegistrationPage />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
+      <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
       {/* Other routes */}
     </Routes>
   );

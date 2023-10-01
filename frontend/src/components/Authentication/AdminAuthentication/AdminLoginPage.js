@@ -1,11 +1,18 @@
-// src/components/Authentication/AdminAuthentication/AdminLoginPage.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
 import './AdminLoginPage.css';
 
 function AdminLoginPage() {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleLogin = () => {
+    // Perform your login logic here
+    // Once login is successful, navigate to the dashboard
+    navigate('/dashboard'); // Use navigate to change the route
+  };
+
   return (
     <div className="login-page">
       <Header />
@@ -29,7 +36,9 @@ function AdminLoginPage() {
                   <label htmlFor="admin_remember_me">Remember me</label>
                 </div>
                 <div className="actions">
-                  <input type="submit" name="commit" value="Log in" className="btn btn-primary" />
+                  <button type="button" onClick={handleLogin} className="btn btn-primary">
+                    Log in
+                  </button>
                 </div>
               </form>
 
@@ -37,13 +46,12 @@ function AdminLoginPage() {
                 <li>
                   <a href="/auth/password/new">Forgot your password?</a>
                 </li>
+                <li>
+                <Link to="/admin-registration">Register as Administrator</Link>
+                </li>
               </ul>
             </div>
           </article>
-          {/* Link to login as administrator */}
-          <div className="admin-login-link">
-            <Link to="/admin-registration">Register as Administrator</Link>
-          </div>
         </div>
       </main>
       <Footer />
