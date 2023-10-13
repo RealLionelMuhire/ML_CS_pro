@@ -1,4 +1,3 @@
-// src/components/Router.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './HomePage';
@@ -7,6 +6,13 @@ import ClientRegistrationPage from './Authentication/ClientAuthentication/Client
 import AdminLoginPage from './Authentication/AdminAuthentication/AdminLoginPage';
 import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminRegistrationPage';
 import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
+
+// Import your other components for the routes here
+// For example:
+import FindClientComponent from './AdminAccounts/FindClientComponent';
+import ActiveClientsComponent from './AdminAccounts/ActiveClientsComponent';
+import AppointmentSchedulingComponent from './AdminAccounts/AppointmentSchedulingComponent';
+import RegisterClientComponent from './AdminAccounts/RegisterClientComponent';
 
 function AppRouter() {
   return (
@@ -17,7 +23,12 @@ function AppRouter() {
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
-      {/* Other routes */}
+      {/* Add routes for other icons */}
+      <Route path="/find-client" element={<FindClientComponent />} />
+      <Route path="/active-clients" element={<ActiveClientsComponent />} />
+      <Route path="/appointment-scheduling" element={<AppointmentSchedulingComponent />} />
+      <Route path="/register-client" element={<RegisterClientComponent />} />
+      {/* Add routes for other icons */}
     </Routes>
   );
 }

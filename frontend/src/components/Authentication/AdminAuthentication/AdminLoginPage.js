@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
 import './AdminLoginPage.css';
 
 function AdminLoginPage() {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     // Perform your login logic here
     // Once login is successful, navigate to the dashboard
-    navigate('/dashboard'); // Use navigate to change the route
+    navigate('/admin-dashboard');
   };
 
   return (
@@ -36,6 +36,7 @@ function AdminLoginPage() {
                   <label htmlFor="admin_remember_me">Remember me</label>
                 </div>
                 <div className="actions">
+                  {/* Add the login button here */}
                   <button type="button" onClick={handleLogin} className="btn btn-primary">
                     Log in
                   </button>
@@ -47,7 +48,7 @@ function AdminLoginPage() {
                   <a href="/auth/password/new">Forgot your password?</a>
                 </li>
                 <li>
-                <Link to="/admin-registration">Register as Administrator</Link>
+                  <Link to="/admin-registration">Register as Administrator</Link>
                 </li>
               </ul>
             </div>
@@ -58,4 +59,5 @@ function AdminLoginPage() {
     </div>
   );
 }
+
 export default AdminLoginPage;
