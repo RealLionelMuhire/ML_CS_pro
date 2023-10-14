@@ -6,6 +6,8 @@ import ClientRegistrationPage from './Authentication/ClientAuthentication/Client
 import AdminLoginPage from './Authentication/AdminAuthentication/AdminLoginPage';
 import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminRegistrationPage';
 import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
+import ClientDashboardPage from './ClientAccounts/ClientDashboardPage';
+import ClientAcceptanceForm1 from './ClientAccounts/ClientForms/ClientAcceptanceForm1';
 
 // Import your other components for the routes here
 // For example:
@@ -20,6 +22,8 @@ function AppRouter() {
       <Route path="/" element={<HomePage />} />
       <Route path="/client-login" element={<ClientLoginPage />} />
       <Route path="/client-registration" element={<ClientRegistrationPage />} />
+      <Route path="/client-dashboard" element={<ClientDashboardPage/>} />
+      <Route path="/client-acceptance-form" element={<ClientAcceptanceForm1 />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage />} />

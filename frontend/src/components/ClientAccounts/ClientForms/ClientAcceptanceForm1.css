@@ -1,0 +1,84 @@
+/* ClientAcceptanceForm1.css */
+
+/* Container for the form */
+.client-acceptance-form {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Form header */
+  .client-acceptance-form h2 {
+    font-size: 24px;
+    color: #00008b;
+  }
+  
+  /* Section headers */
+  .client-acceptance-form h3 {
+    font-size: 18px;
+    color: #00008b;
+  }
+  
+  /* Paragraphs for form instructions */
+  .client-acceptance-form p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Form input labels */
+  .client-acceptance-form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #00008b;
+  }
+  
+  /* Form input fields */
+  .client-acceptance-form input[type="text"],
+  .client-acceptance-form input[type="number"],
+  .client-acceptance-form input[type="date"],
+  .client-acceptance-form input[type="email"],
+  .client-acceptance-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Radio button labels */
+  .client-acceptance-form input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  /* Next section button */
+  .client-acceptance-form button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00008b;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Next section button hover effect */
+  .client-acceptance-form button:hover {
+    background-color: #90ee90;
+  }
+  
+  /* Additional styles as needed for specific form sections */
+  
+  /* Example for section 2 input fields */
+  .client-acceptance-form .section2-input {
+    /* Define styles for section 2 input fields */
+  }
+  
+  /* Example for section 3 input fields */
+  .client-acceptance-form .section3-input {
+    /* Define styles for section 3 input fields */
+  }
+  

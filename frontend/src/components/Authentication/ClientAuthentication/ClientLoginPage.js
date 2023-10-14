@@ -1,9 +1,18 @@
 import React from 'react';
 import Header from '../../Common/Header';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../Common/Footer';
 import './ClientLoginPage.css';
 
 function ClientLoginPage() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Perform your login logic here
+    // Once login is successful, navigate to the dashboard
+    navigate('/client-dashboard');
+  };
+
   return (
     <div className="login-page">
       <Header />
@@ -26,7 +35,10 @@ function ClientLoginPage() {
                   <label htmlFor="user_remember_me">Remember me</label>
                 </div>
                 <div className="actions">
-                  <input type="submit" name="commit" value="Log in" className="btn btn-primary" />
+                  {/* Add the login button here */}
+                  <button type="button" onClick={handleLogin} className="btn btn-primary">
+                    Log in
+                  </button>
                 </div>
               </form>
               <ul id="devise_links">
