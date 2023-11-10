@@ -1,0 +1,48 @@
+backend/
+|-- app/
+|   |-- __init__.py
+|   |-- routes/
+|   |   |-- __init__.py
+|   |   |-- authentication_routes.py
+|   |   |-- client_routes.py
+|   |   |-- admin_routes.py
+|   |   |-- xero_routes.py
+|   |   |-- toggl_routes.py
+|   |-- models/
+|   |   |-- __init__.py
+|   |   |-- client.py
+|   |   |-- admin.py
+|   |   |-- xero_integration.py
+|   |   |-- toggl_integration.py
+|   |-- services/
+|   |   |-- __init__.py
+|   |   |-- client_service.py
+|   |   |-- admin_service.py
+|   |   |-- xero_service.py
+|   |   |-- toggl_service.py
+|   |-- utils/
+|   |   |-- __init__.py
+|   |   |-- authentication.py
+|   |   |-- permissions.py
+|   |   |-- security.py
+|   |   |-- email.py
+|-- config/
+|   |-- __init__.py
+|   |-- app_config.py
+|   |-- database_config.py
+|   |-- xero_config.py
+|   |-- toggl_config.py
+|-- migrations/
+|   |-- versions/
+|   |   |-- __init__.py
+|   |   |-- version1.py
+|-- tests/
+|   |-- __init__.py
+|   |-- test_authentication.py
+|   |-- test_client_routes.py
+|   |-- test_admin_routes.py
+|   |-- test_xero_integration.py
+|   |-- test_toggl_integration.py
+|-- requirements.txt
+|-- run.py
+
