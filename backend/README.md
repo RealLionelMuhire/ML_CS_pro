@@ -1,5 +1,7 @@
 # This the backend of ML
 
+if you need python virtual env and you have already set python virtual env in your root, just run: `source ~/myenv/bin/activate`
+
 remember to run `pip install -r requirements.txt`
 
 

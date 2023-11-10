@@ -8,4 +8,3 @@ python-dotenv==0.19.1
 marshmallow==3.14.0
 Xero-Wrapper==0.5.4
 TogglPy==1.2.6
-

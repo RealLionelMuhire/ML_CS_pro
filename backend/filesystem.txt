@@ -45,4 +45,5 @@ backend/
 |   |-- test_toggl_integration.py
 |-- requirements.txt
 |-- run.py
+|-- README.md
 
