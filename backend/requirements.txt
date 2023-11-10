@@ -1,0 +1,11 @@
+Flask==2.0.1
+Flask-RESTful==0.3.9
+Flask-SQLAlchemy==3.0
+Flask-Migrate==3.1.0
+mysql-connector-python==8.0.28
+requests==2.26.0
+python-dotenv==0.19.1
+marshmallow==3.14.0
+Xero-Wrapper==0.5.4
+TogglPy==1.2.6
+

@@ -1,3 +1,8 @@
+##This the backend of ML
+
+remember to run `pip install -r requirements.txt`
+
+
 ##Explanation of main folders
 
 app: Contains the main application logic
