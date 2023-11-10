@@ -7,7 +7,7 @@ import AdminLoginPage from './Authentication/AdminAuthentication/AdminLoginPage'
 import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminRegistrationPage';
 import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
 import ClientDashboardPage from './ClientAccounts/ClientDashboardPage';
-import ClientAcceptanceForm1 from './ClientAccounts/ClientForms/ClientAcceptanceForm1';
+import ClientAcceptanceForm1 from './ClientAccounts/ClientForms/ClientForm1/ClientAcceptanceForm1';
 
 // Import your other components for the routes here
 // For example:
