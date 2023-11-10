@@ -1,9 +1,12 @@
-from app import create_app
+#!/usr/bin/python3
 
-# Get the application instance
-app = create_app()
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-if __name__ == '__main__':
-    # Run the application
-    app.run(debug=True)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/dbname'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
