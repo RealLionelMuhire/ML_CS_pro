@@ -70,7 +70,7 @@ function ClientDashboardPage() {
         </div>
       </main>
       <div className="dashboard-actions">
-      <button onClick={() => navigate('/client-acceptance-form')}>Add More Information of Your Company</button>
+      <button onClick={() => navigate('/client-acceptance-form')} >Add More Information of Your Company</button>
         <button>Fill the KYC Form</button>
       </div>
       <Footer />
