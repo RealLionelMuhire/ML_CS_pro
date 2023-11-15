@@ -23,3 +23,12 @@ tests: Unit tests for different parts of the application.
 requirements.txt: Lists the Python packages required for your project.
 
 run.py: The entry point for running your Flask application.
+
+# Developers responsibilities in connection to backend
+
+Everyone may create his own database with has unique database credentials (username, password) for their local development database. This helps avoid conflicts and allows each developer to have their isolated environment.
+
+Developers maintain their individual .env files for local configurations.
+The `.env` file is added to the project's `.gitignore` to avoid accidental commits
+
+Explaining others suggestion and what to be made, or what has already done
