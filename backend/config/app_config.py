@@ -1,13 +1,12 @@
 # config/app_config.py
-
 import os
 
 class Config:
-    # other configurations...
+    # Your other configurations...
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://MLDemoDB:00ML_DEMO@mldemodb.cmasfphtsfy9.eu-north-1.rds.amazonaws.com:3306/MLDemoDB'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
@@ -22,6 +21,5 @@ config = {
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
-
 
 config_name = os.getenv('FLASK_ENV', 'development')

@@ -1,49 +1,66 @@
-backend/
-|-- app/
-|   |-- __init__.py
-|   |-- routes/
-|   |   |-- __init__.py
-|   |   |-- authentication_routes.py
-|   |   |-- client_routes.py
-|   |   |-- admin_routes.py
-|   |   |-- xero_routes.py
-|   |   |-- toggl_routes.py
-|   |-- models/
-|   |   |-- __init__.py
-|   |   |-- client.py
-|   |   |-- admin.py
-|   |   |-- xero_integration.py
-|   |   |-- toggl_integration.py
-|   |-- services/
-|   |   |-- __init__.py
-|   |   |-- client_service.py
-|   |   |-- admin_service.py
-|   |   |-- xero_service.py
-|   |   |-- toggl_service.py
-|   |-- utils/
-|   |   |-- __init__.py
-|   |   |-- authentication.py
-|   |   |-- permissions.py
-|   |   |-- security.py
-|   |   |-- email.py
-|-- config/
-|   |-- __init__.py
-|   |-- app_config.py
-|   |-- database_config.py
-|   |-- xero_config.py
-|   |-- toggl_config.py
-|-- migrations/
-|   |-- versions/
-|   |   |-- __init__.py
-|   |   |-- version1.py
-|-- tests/
-|   |-- __init__.py
-|   |-- test_authentication.py
-|   |-- test_client_routes.py
-|   |-- test_admin_routes.py
-|   |-- test_xero_integration.py
-|   |-- test_toggl_integration.py
-|-- requirements.txt
-|-- run.py
-|-- README.md
+.
+├── app
+│   ├── __init__.py
+│   ├── models
+│   │   ├── admin.py
+│   │   ├── client_data.py
+│   │   ├── client.py
+│   │   ├── __init__.py
+│   │   ├── toggl_integration.py
+│   │   └── xero_integration.py
+│   ├── __pycache__
+│   │   └── __init__.cpython-39.pyc
+│   ├── routes
+│   │   ├── admin_routes.py
+│   │   ├── authentication_routes.py
+│   │   ├── client_routes.py
+│   │   ├── __init__.py
+│   │   ├── toggl_routes.py
+│   │   └── xero_routes.py
+│   ├── services
+│   │   ├── admin_service.py
+│   │   ├── client_service.py
+│   │   ├── __init__.py
+│   │   ├── toggl_service.py
+│   │   └── xero_service.py
+│   └── utils
+│       ├── authentication.py
+│       ├── email.py
+│       ├── __init__.py
+│       ├── permissions.py
+│       └── security.py
+├── config
+│   ├── app_config.py
+│   ├── database_config.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   └── versions
+│   │       ├── __init__.py
+│   │       └── version1.py
+│   ├── toggl_config.py
+│   └── xero_config.py
+├── filemaker.sh
+├── filesystem.txt
+├── migrations
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── __pycache__
+│   │   └── env.cpython-39.pyc
+│   ├── README
+│   ├── script.py.mako
+│   └── versions
+├── __pycache__
+│   └── run.cpython-39.pyc
+├── README.md
+├── requirements.txt
+├── run.py
+└── tests
+    ├── __init__.py
+    ├── test_admin_routes.py
+    ├── test_authentication.py
+    ├── test_client_routes.py
+    ├── test_toggl_integration.py
+    └── test_xero_integration.py
 
+14 directories, 49 files
