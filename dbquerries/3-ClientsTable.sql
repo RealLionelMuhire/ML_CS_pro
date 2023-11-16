@@ -4,6 +4,8 @@ CREATE TABLE Clients (
     ClientStatus VARCHAR(20) NOT NULL,
     ClientName VARCHAR(100) NOT NULL,
     Email VARCHAR(50) NOT NULL,
+    PhoneNumber VARCHAR(20) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     CompanyName VARCHAR(100) NOT NULL,
     NationalID VARCHAR(20) NOT NULL,
     PassportNumber VARCHAR(20),
