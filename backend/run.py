@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # run.py
 from app import app
 
