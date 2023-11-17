@@ -25,6 +25,7 @@ function ClientList() {
           // Replace 'id' and 'fullName' with the actual fields returned by your API
         ))}
       </ul>
+      <p>List</p>
     </div>
   );
 }
