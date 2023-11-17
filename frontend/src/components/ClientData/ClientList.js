@@ -1,4 +1,4 @@
-// src/components/ClientList.js
+// src/components/ClientData/ClientList.js
 import React, { useState, useEffect } from 'react';
 import { getClients } from '../../../src/services/api';
 
