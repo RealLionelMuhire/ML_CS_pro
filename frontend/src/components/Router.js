@@ -8,6 +8,7 @@ import AdminRegistrationPage from './Authentication/AdminAuthentication/AdminReg
 import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
 import ClientDashboardPage from './ClientAccounts/ClientDashboardPage';
 import ClientAcceptanceForm1 from './ClientAccounts/ClientForms/ClientForm1/ClientAcceptanceForm1';
+import ClientList from './ClientData/ClientList';
 
 // Import your other components for the routes here
 // For example:
@@ -27,7 +28,7 @@ function AppRouter() {
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
       <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
-      {/* Add routes for other icons */}
+      <Route path="/client-list" component={ClientList} />
       <Route path="/find-client" element={<FindClientComponent />} />
       <Route path="/active-clients" element={<ActiveClientsComponent />} />
       <Route path="/appointment-scheduling" element={<AppointmentSchedulingComponent />} />
