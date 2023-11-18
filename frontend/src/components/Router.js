@@ -13,7 +13,6 @@ import FindClientComponent from './AdminAccounts/FindClientComponent';
 import ActiveClientsComponent from './AdminAccounts/ActiveClientsComponent';
 import AppointmentSchedulingComponent from './AdminAccounts/AppointmentSchedulingComponent';
 import RegisterClientComponent from './AdminAccounts/RegisterClientComponent';
-import ProtectedRoute from './components/ProtectedRoute';
 
 function AppRouter() {
   return (

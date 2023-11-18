@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
 import { loginUser } from '../../../services/api';
+import { useAuth } from '../../../context/AuthContext';
 import './AdminLoginPage.css';
 
 function AdminLoginPage() {
