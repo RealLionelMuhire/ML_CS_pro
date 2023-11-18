@@ -9,9 +9,6 @@ import AdminDashboardPage from './AdminAccounts/AdminDashboardPage';
 import ClientDashboardPage from './ClientAccounts/ClientDashboardPage';
 import ClientAcceptanceForm1 from './ClientAccounts/ClientForms/ClientForm1/ClientAcceptanceForm1';
 import ClientList from './ClientData/ClientList';
-
-// Import your other components for the routes here
-// For example:
 import FindClientComponent from './AdminAccounts/FindClientComponent';
 import ActiveClientsComponent from './AdminAccounts/ActiveClientsComponent';
 import AppointmentSchedulingComponent from './AdminAccounts/AppointmentSchedulingComponent';
