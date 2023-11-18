@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
-import { loginUser } from '../../services/api'; // Import the API service
+import { loginUser } from '../../../services/api';
 import './AdminLoginPage.css';
 
 function AdminLoginPage() {
@@ -61,7 +61,38 @@ function AdminLoginPage() {
               <h2 className="logo">WELCOME TO ML CORPORATE SERVICES</h2>
               <p>For administrators only</p>
               <form id="admin_login_form" action="/auth/admin_sign_in" method="post">
-                {/* ... (unchanged code) ... */}
+                <div className="field">
+                  <label htmlFor="admin_identifier">Username or Email</label><br />
+                  <input
+                    autoFocus
+                    type="text"
+                    name="identifier"
+                    id="admin_identifier"
+                    value={formData.identifier}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="field">
+                  <label htmlFor="admin_password">Password</label><br />
+                  <input
+                    type="password"
+                    name="password"
+                    id="admin_password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                {/* Additional fields can be added if needed */}
+                <div className="field checkbox-field">
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    id="admin_remember_me"
+                    checked={formData.rememberMe}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="admin_remember_me">Remember me</label>
+                </div>
                 <div className="actions">
                   <button type="button" onClick={handleLogin} className="btn btn-primary">
                     Log in
