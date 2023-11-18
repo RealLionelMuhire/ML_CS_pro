@@ -1,4 +1,5 @@
-import React from 'react';
+// src/components/Authentication/AdminAuthentication/AdminLoginPage.js
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
@@ -6,10 +7,35 @@ import './AdminLoginPage.css';
 
 function AdminLoginPage() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    identifier: '',
+    password: '',
+    rememberMe: false,
+  });
+  const [error, setError] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
 
   const handleLogin = () => {
     // Perform your login logic here
-    // Once login is successful, navigate to the dashboard
+    // Check if the identifier and password are provided
+    if (!formData.identifier || !formData.password) {
+      setError('Please provide both username/email and password.');
+      return;
+    }
+
+    // Clear previous errors
+    setError('');
+
+    // Your login logic goes here
+
+    // Simulate a successful login for demonstration purposes
     navigate('/admin-dashboard');
   };
 
@@ -24,23 +50,42 @@ function AdminLoginPage() {
               <p>For administrators only</p>
               <form id="admin_login_form" action="/auth/admin_sign_in" method="post">
                 <div className="field">
-                  <label htmlFor="admin_identifier">Email or ID</label><br />
-                  <input autoFocus type="text" name="admin[identifier]" id="admin_identifier" />
+                  <label htmlFor="admin_identifier">Username or Email</label><br />
+                  <input
+                    autoFocus
+                    type="text"
+                    name="identifier"
+                    id="admin_identifier"
+                    value={formData.identifier}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="field">
                   <label htmlFor="admin_password">Password</label><br />
-                  <input type="password" name="admin[password]" id="admin_password" />
+                  <input
+                    type="password"
+                    name="password"
+                    id="admin_password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="field checkbox-field">
-                  <input type="checkbox" name="admin[remember_me]" id="admin_remember_me" />
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    id="admin_remember_me"
+                    checked={formData.rememberMe}
+                    onChange={handleInputChange}
+                  />
                   <label htmlFor="admin_remember_me">Remember me</label>
                 </div>
                 <div className="actions">
-                  {/* Add the login button here */}
                   <button type="button" onClick={handleLogin} className="btn btn-primary">
                     Log in
                   </button>
                 </div>
+                {error && <p className="error-message">{error}</p>}
               </form>
 
               <ul id="devise_links">
