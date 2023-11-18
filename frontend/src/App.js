@@ -1,15 +1,17 @@
 // src/App.js
 import React from 'react';
 import './App.css';
-import AppRouter from './components/Router'; // Import the Router component
+import AppRouter from './components/Router';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
     <div className="App">
-      <AppRouter /> {/* Render the Router component */}
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </div>
   );
 }
 
 export default App;
-
