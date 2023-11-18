@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
+import { registerUser } from '../../../services/api';
 import './AdminRegistrationPage.css';
 
 function AdminRegistrationPage() {
@@ -40,19 +41,35 @@ function AdminRegistrationPage() {
     }
 
     if (password.length > 0 && password.length < 8) {
-      setPasswordSuggestions('Consider a longer password for better security.');
+      setPasswordSuggestions('Consider a password 8 Characters, or longer for better security.');
     } else {
       setPasswordSuggestions('');
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     validatePassword();
 
     if (!passwordError) {
-      console.log(formData);
+      try {
+        // Call the API service with the extracted form data
+        const response = await registerUser({
+          username: formData.username,
+          password: formData.password,
+          email: formData.email,
+          fullName: formData.fullName,
+          nationalID: formData.nationalID,
+          location: formData.location,
+        });
+
+        // Handle the response (e.g., display a success message, redirect, etc.)
+        console.log('Registration successful:', response);
+      } catch (error) {
+        // Handle registration errors (e.g., display an error message)
+        console.error('Registration error:', error.message);
+      }
     }
   };
 
