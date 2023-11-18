@@ -26,12 +26,12 @@ function AppRouter() {
       <Route path="/client-acceptance-form" element={<ClientAcceptanceForm1 />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
-      <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
       <Route path="/client-list" component={ClientList} />
       <Route path="/find-client" element={<FindClientComponent />} />
       <Route path="/active-clients" element={<ActiveClientsComponent />} />
       <Route path="/appointment-scheduling" element={<AppointmentSchedulingComponent />} />
       <Route path="/register-client" element={<RegisterClientComponent />} />
+      <ProtectedRoute path="/admin-dashboard" element={<AdminDashboardPage />} adminRequired />
       {/* Add routes for other icons */}
     </Routes>
   );
