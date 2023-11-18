@@ -1,9 +1,13 @@
-from flask import Blueprint, jsonify
-from app.services.client_service import get_all_clients
+# app/routes/client_routes.py
 
-client_routes = Blueprint('client_routes', __name__)
+from flask import jsonify
+from app import app, db
+from app.models import Client
 
-@client_routes.route('/api/clients', methods=['GET'])
+@app.route('/api/clients', methods=['GET'])
 def get_clients():
-    clients = get_all_clients()
-    return jsonify({'clients': clients})
+    clients = Client.query.all()
+    client_data = [{"id": client.id, "username": client.username} for client in clients]
+    response = jsonify({"clients": client_data})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
