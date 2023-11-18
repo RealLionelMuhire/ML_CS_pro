@@ -5,27 +5,25 @@ import Footer from '../../Common/Footer';
 import './AdminRegistrationPage.css';
 
 function AdminRegistrationPage() {
-  const [section, setSection] = useState('');
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    confirmPassword: '',
+    email: '',
+    fullName: '',
+    nationalID: '',
+    location: '',
+  });
 
-  // Define the sections and their corresponding fields
-  const sections = {
-    'Personal Information': [
-      'Full Name (First, Middle, Last)',
-      'Date of Birth',
-      'Gender',
-      'Social Security Number (or equivalent, depending on location)',
-      'Marital Status',
-    ],
-    'Contact Information': [
-      'Home Address',
-      'Phone Number (Mobile and/or Home)',
-      'Email Address',
-    ],
-    // Define other sections and fields here
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSectionChange = (selectedSection) => {
-    setSection(selectedSection);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // form submission logic here
+    console.log(formData);
   };
 
   return (
@@ -36,38 +34,27 @@ function AdminRegistrationPage() {
           <article className="admin-registration">
             <div className="registration-form">
               <h2 className="logo">WELCOME TO ML CORPORATE SERVICES</h2>
-              <form id="admin_registration_form" action="/auth/sign_up" method="post">
-                {/* Dropdown to select section */}
-                <div className="field">
-                  <label htmlFor="section">Select Section:</label><br />
-                  <select
-                    name="section"
-                    id="section"
-                    onChange={(e) => handleSectionChange(e.target.value)}
-                  >
-                    <option value="">Select a Section</option>
-                    {Object.keys(sections).map((sectionName) => (
-                      <option key={sectionName} value={sectionName}>
-                        {sectionName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Conditional rendering of fields based on selected section */}
-                {section && (
-                  <div className="field">
-                    <label>{section}</label><br />
-                    {sections[section].map((placeholder) => (
+              <form onSubmit={handleSubmit}>
+                {Object.keys(formData).map((fieldName) => (
+                  <div key={fieldName} className="field">
+                    <label htmlFor={fieldName}>{fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}:</label><br />
+                    {fieldName.includes('password') ? (
                       <input
-                        key={placeholder}
-                        type="text"
-                        name={`user[${placeholder}]`}
-                        placeholder={placeholder}
+                        type="password"
+                        name={fieldName}
+                        value={formData[fieldName]}
+                        onChange={handleChange}
                       />
-                    ))}
+                    ) : (
+                      <input
+                        type="text"
+                        name={fieldName}
+                        value={formData[fieldName]}
+                        onChange={handleChange}
+                      />
+                    )}
                   </div>
-                )}
+                ))}
 
                 {/* Field for attaching PDF files */}
                 <div className="field">
@@ -76,7 +63,7 @@ function AdminRegistrationPage() {
                 </div>
 
                 <div className="actions">
-                  <input type="submit" name="commit" value="Register" className="btn btn-primary" />
+                  <input type="submit" value="Register" className="btn btn-primary" />
                 </div>
               </form>
             </div>
