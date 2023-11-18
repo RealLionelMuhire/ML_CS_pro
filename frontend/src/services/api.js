@@ -1,14 +1,31 @@
-import axios from 'axios';
+// src/services/api.js
 
-const BASE_URL = 'http://127.0.0.1:5000'; // actual backend URL
+const BASE_URL = 'http://127.0.0.1:5000'; //backend URL
 
-const api = axios.create({
-  baseURL: BASE_URL,
-});
+const registerUser = async (userData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/sign_up`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
 
-export const getClients = () => {
-  return api.get('/api/clients');
+    if (!response.ok) {
+      // Handle non-successful response (e.g., display an error message)
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Registration failed');
+    }
+
+    // Registration successful
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    // Handle errors (e.g., display an error message or log the error)
+    console.error('Error during registration:', error.message);
+    throw error;
+  }
 };
 
-// Add more functions for different API calls as needed
-
+export { registerUser };
