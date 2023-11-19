@@ -19,7 +19,7 @@ class User(db.Model):
     def __init__(self, UserType, Username, Password, Email, FullName, NationalID, Location):
         self.UserType = UserType
         self.Username = Username
-        self.Password = self.hash_password(Password)  # Hash the password before storing it
+        self.Password = self.hash_password(Password)
         self.Email = Email
         self.FullName = FullName
         self.NationalID = NationalID
