@@ -7,4 +7,4 @@ python-dotenv
 marshmallow
 Flask-Migrate
 python-dotenv
-
+bcrypt

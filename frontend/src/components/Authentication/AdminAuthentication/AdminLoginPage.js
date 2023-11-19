@@ -8,7 +8,7 @@ import './AdminLoginPage.css';
 
 function AdminLoginPage() {
   const navigate = useNavigate();
-  console.log("====authUath==>", useAuth())
+  // console.log("====authUath==>", useAuth())
   // const { login, isAuthenticated } = useAuth();
   const login = useAuth()?.login;
   const isAuthenticated = useAuth()?.isAuthenticated
