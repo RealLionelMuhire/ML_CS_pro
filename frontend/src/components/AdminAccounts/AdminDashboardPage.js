@@ -83,7 +83,6 @@ function AdminDashboardPage() {
                 <br />View Logs and Activities
               </div>
             </Link>
-            {/* New Options and Icons */}
             <Link to="/alerts">
               <div className="option">
                 <i className="material-icons">notifications</i>
