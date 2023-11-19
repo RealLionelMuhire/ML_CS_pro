@@ -1,16 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
 import './AdminDashboardPage.css';
 
 function AdminDashboardPage() {
-  const navigate = useNavigate();
-
-  const navigateToClientList = () => {
-    navigate('../ClientData/ClientList');
-  };
-
   return (
     <div className="dashboard-page">
       <Header />
