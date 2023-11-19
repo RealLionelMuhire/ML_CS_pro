@@ -7,6 +7,7 @@ from config.app_config import AppConfig
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
+# this is of creatin and inirialising the flask app
 def create_app():
     app = Flask(__name__)
     app.config.from_object(AppConfig)
