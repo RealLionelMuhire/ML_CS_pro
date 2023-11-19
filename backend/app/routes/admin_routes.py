@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models.admin import Admin
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from app.models.admin import User
 from app import db, bcrypt
 
 admin_routes = Blueprint('admin_routes', __name__)
@@ -14,11 +15,21 @@ def login():
     if not username_or_email or not password:
         return jsonify({'error': 'Please provide both username/email and password'}), 400
 
-    admin = Admin.query.filter((Admin.username == username_or_email) | (Admin.email == username_or_email)).first()
+    user = User.query.filter((User.username == username_or_email) | (User.email == username_or_email)).first()
 
-    if admin and bcrypt.check_password_hash(admin.password, password):
+    if user and bcrypt.check_password_hash(user.password, password):
         # Passwords match, user is authenticated
-        # You can create a JWT token here and return it if needed
-        return jsonify({'message': 'Login successful'}), 200
+
+        # Create a JWT token
+        access_token = create_access_token(identity=user.id)
+
+        return jsonify({'access_token': access_token}), 200
     else:
         return jsonify({'error': 'Incorrect username/email or password'}), 401
+
+@admin_routes.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
