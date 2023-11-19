@@ -1,28 +1,21 @@
 # app/__init__.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_cors import CORS
-from dotenv import load_dotenv
-import os
+from flask_bcrypt import Bcrypt
+from config.app_config import AppConfig
 
-load_dotenv()
+db = SQLAlchemy()
+bcrypt = Bcrypt()
 
-app = Flask(__name__)
-CORS(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(AppConfig)
 
-"""app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
+    bcrypt.init_app(app)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)"""
+    from app.routes.admin_routes import admin_routes
+    app.register_blueprint(admin_routes)
 
-@api.route('/profile')
-def my_profile():
-    response_body = {
-        "name": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
-    }
 
-    return response_body
-
+    return app
