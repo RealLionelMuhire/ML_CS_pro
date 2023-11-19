@@ -1,7 +1,8 @@
-# App/__init__.py
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS  # Import CORS
+
 from config.app_config import AppConfig
 
 db = SQLAlchemy()
@@ -14,6 +15,9 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     bcrypt.init_app(app)
+
+    # Enable CORS for all routes
+    CORS(app)
 
     # Register blueprints
     from app.routes.admin_routes import admin_routes

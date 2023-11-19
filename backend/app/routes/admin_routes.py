@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models.admin import Admin  # Assuming Admin is the renamed User model
+from app.models.admin import Admin
 from app import db, bcrypt
 
 admin_routes = Blueprint('admin_routes', __name__)
@@ -14,11 +14,7 @@ def login():
     if not username_or_email or not password:
         return jsonify({'error': 'Please provide both username/email and password'}), 400
 
-    admin = Admin.query.filter_by(username=username_or_email).first()
-
-    if not admin:
-        # Check if the username is not found, try to find by email
-        admin = Admin.query.filter_by(email=username_or_email).first()
+    admin = Admin.query.filter((Admin.username == username_or_email) | (Admin.email == username_or_email)).first()
 
     if admin and bcrypt.check_password_hash(admin.password, password):
         # Passwords match, user is authenticated
