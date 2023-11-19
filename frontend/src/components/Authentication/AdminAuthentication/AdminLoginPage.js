@@ -1,4 +1,3 @@
-// src/components/Authentication/AdminAuthentication/AdminLoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
@@ -9,6 +8,7 @@ import './AdminLoginPage.css';
 
 function AdminLoginPage() {
   const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({
     identifier: '',
     password: '',
@@ -44,13 +44,23 @@ function AdminLoginPage() {
       // Store the user token in local storage or a cookie
       localStorage.setItem('userToken', token);
 
+      // Call the login function from the context to update the authentication state
+      login();
+
       // Simulate a successful login for demonstration purposes
       navigate('/admin-dashboard');
     } catch (error) {
       // Handle login errors (e.g., display an error message)
-      setError(error.message);
+      setError('Incorrect password. Please try again.');
+      // Redirect to login page with error message
+      navigate('/admin-login', { state: { errorMessage: 'Incorrect password. Please try again.' } });
     }
   };
+
+  if (isAuthenticated) {
+    // Redirect to the admin dashboard if the user is already authenticated
+    navigate('/admin-dashboard');
+  }
 
   return (
     <div className="login-page">
