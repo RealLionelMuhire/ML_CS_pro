@@ -8,7 +8,10 @@ import './AdminLoginPage.css';
 
 function AdminLoginPage() {
   const navigate = useNavigate();
-  const { login, isAuthenticated } = useAuth();
+  console.log("====authUath==>", useAuth())
+  // const { login, isAuthenticated } = useAuth();
+  const login = useAuth()?.login;
+  const isAuthenticated = useAuth()?.isAuthenticated
   const [formData, setFormData] = useState({
     identifier: '',
     password: '',

@@ -31,7 +31,12 @@ function AppRouter() {
       <Route path="/active-clients" element={<ActiveClientsComponent />} />
       <Route path="/appointment-scheduling" element={<AppointmentSchedulingComponent />} />
       <Route path="/register-client" element={<RegisterClientComponent />} />
-      <ProtectedRoute path="/admin-dashboard" element={<AdminDashboardPage />} adminRequired />
+      <Route path='/admin-dashboard' element={<ProtectedRoute/>}>
+        <Route path='/admin-dashboard' element={<AdminDashboardPage/>}/>
+      </Route>
+      {/* <> */}
+      {/* <ProtectedRoute path="/admin-dashboard" element={<AdminDashboardPage />} adminRequired /> */}
+      {/* </> */}
       {/* Add routes for other icons */}
     </Routes>
   );
