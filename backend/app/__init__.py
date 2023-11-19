@@ -1,12 +1,13 @@
+# app/__init__.py
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_cors import CORS  # Import CORS
-
+from flask_jwt_extended import JWTManager
 from config.app_config import AppConfig
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
@@ -15,15 +16,15 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     bcrypt.init_app(app)
+    jwt.init_app(app)
 
-    # Enable CORS for all routes
-    CORS(app)
+    # ... (other configurations)
 
     # Register blueprints
     from app.routes.admin_routes import admin_routes
     app.register_blueprint(admin_routes, url_prefix='/admin')  # Adjust the prefix as needed
 
-    # Add more blueprints as your application grows
+    # ... (other blueprints)
 
     # Error handling
     @app.errorhandler(404)
