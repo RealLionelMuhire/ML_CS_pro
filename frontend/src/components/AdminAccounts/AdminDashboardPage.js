@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
-import ClientList from '../ClientData/ClientList';
 import './AdminDashboardPage.css';
 
 function AdminDashboardPage() {
@@ -109,11 +108,6 @@ function AdminDashboardPage() {
                 <br />Add a Review or Suggestion for the App
               </div>
             </Link>
-            <div className="option" onClick={navigateToClientList}>
-              <i className="material-icons">list</i>
-              <br />
-              Client List
-            </div>
           </div>
         </div>
       </main>
