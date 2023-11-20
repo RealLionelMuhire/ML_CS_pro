@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # app/__init__.py
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -13,6 +12,7 @@ jwt = JWTManager()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(AppConfig)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/ML_DEMO_DB'
 
     # Initialize extensions
     db.init_app(app)
@@ -20,6 +20,10 @@ def create_app():
     jwt.init_app(app)
 
     # ... (other configurations)
+
+    # Print the loaded configurations
+    print("Loaded configurations in app/__init__.py:")
+    print(app.config)
 
     # Register blueprints
     from app.routes.admin_routes import admin_routes
