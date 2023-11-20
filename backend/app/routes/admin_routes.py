@@ -1,12 +1,23 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
+from flask_cors import CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from app.models.admin import User
 from app import db, bcrypt
 
 admin_routes = Blueprint('admin_routes', __name__)
 
-@admin_routes.route('/login', methods=['POST'])
+# Enable CORS for the entire blueprint
+CORS(admin_routes, resources={r"/admin/*": {"origins": "http://127.0.0.1:3000"}})
+
+@admin_routes.route('/login', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "http://127.0.0.1:3000")
+        response.headers.add("Access-Control-Allow-Methods", "POST")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        return response
+
     data = request.get_json()
 
     username_or_email = data.get('username_or_email')

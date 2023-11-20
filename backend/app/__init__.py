@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from config.app_config import AppConfig
+from flask_cors import CORS
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -19,15 +20,13 @@ def create_app():
     bcrypt.init_app(app)
     jwt.init_app(app)
 
-    # ... (other configurations)
+    CORS(app, origins="*")
 
-    # Print the loaded configurations
-    print("Loaded configurations in app/__init__.py:")
-    print(app.config)
+    # ... (other configurations)
 
     # Register blueprints
     from app.routes.admin_routes import admin_routes
-    app.register_blueprint(admin_routes, url_prefix='/admin')  # Adjust the prefix as needed
+    app.register_blueprint(admin_routes, url_prefix='/admin')
 
     # ... (other blueprints)
 
