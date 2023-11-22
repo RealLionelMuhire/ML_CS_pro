@@ -26,27 +26,29 @@ function AdminRegistrationPage() {
 
   const validatePassword = () => {
     const { password, confirmPassword } = formData;
-
+  
     // Password strength requirements
     const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})');
-
+  
     if (!strongRegex.test(password)) {
       setPasswordError('Password must include uppercase, lowercase, numbers, special characters, and be at least 8 characters long');
     } else {
       setPasswordError('');
     }
-
+  
     if (password !== confirmPassword) {
       setPasswordError("Passwords don't match");
+    } else {
+      setPasswordError(''); // Clear the error if passwords match
     }
-
+  
     if (password.length > 0 && password.length < 8) {
       setPasswordSuggestions('Consider a password 8 Characters, or longer for better security.');
     } else {
       setPasswordSuggestions('');
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
