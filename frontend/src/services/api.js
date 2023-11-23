@@ -1,28 +1,24 @@
-// src/services/api.js
-import axios from 'axios';
-
-const BASE_URL = 'http://127.0.0.1:8000/backend'; // Update with your Django backend URL
-
-const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const BASE_URL = 'http://127.0.0.1:8000';
 
 const registerUser = async (userData) => {
   try {
-    const response = await api.post('/register/admin/', userData);
+    const response = await fetch(`${BASE_URL}/api/register/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
 
-    if (!response.data.success) {
-      // Handle non-successful response (e.g., display an error message)
-      throw new Error(response.data.message || 'Registration failed');
+    // Handle the response
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Registration failed');
     }
 
-    // Registration successful
-    return response.data;
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
-    // Handle errors (e.g., display an error message or log the error)
     console.error('Error during registration:', error.message);
     throw error;
   }
@@ -30,17 +26,23 @@ const registerUser = async (userData) => {
 
 const loginUser = async (loginData) => {
   try {
-    const response = await api.post('/login/admin/', loginData);
+    const response = await fetch(`${BASE_URL}/api/login/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    });
 
-    if (!response.data.success) {
-      // Handle non-successful response (e.g., display an error message)
-      throw new Error(response.data.message || 'Login failed');
+    // Handle the response
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Login failed');
     }
 
-    // Login successful
-    return response.data.token;
+    const responseData = await response.json();
+    return responseData.token; // Adjust accordingly based on your authentication mechanism
   } catch (error) {
-    // Handle errors (e.g., display an error message or log the error)
     console.error('Error during login:', error.message);
     throw error;
   }
