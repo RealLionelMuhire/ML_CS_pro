@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
 import { registerUser } from '../../../services/api';
+import { useNavigate } from 'react-router-dom';
 import './AdminRegistrationPage.css';
 
 function AdminRegistrationPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -19,6 +21,7 @@ function AdminRegistrationPage() {
 
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuggestions, setPasswordSuggestions] = useState('');
+  const [registrationErrors, setRegistrationErrors] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +32,7 @@ function AdminRegistrationPage() {
     const { password, confirmPassword } = formData;
 
     // Password strength requirements
-    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})');
+    const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
 
     if (!strongRegex.test(password)) {
       setPasswordError(
@@ -64,17 +67,30 @@ function AdminRegistrationPage() {
           username: formData.username,
           password: formData.password,
           email: formData.email,
-          FullName: formData.FullName, // Update to match the expected case
-          NationalID: formData.NationalID, // Update to match the expected case
-          Location: formData.Location, // Update to match the expected case
+          FullName: formData.FullName,
+          NationalID: formData.NationalID,
+          Location: formData.Location,
           UserType: formData.UserType || 'DefaultUserType', // Default value for userType
         });
 
         // Handle the response (e.g., display a success message, redirect, etc.)
         console.log('Registration successful:', response);
+        if (response.status === 302) {
+          // Redirect to the login page
+          navigate('/admin-login');
+        }
       } catch (error) {
         // Handle registration errors (e.g., display an error message)
         console.error('Registration error:', error.message);
+
+        if (error.response && error.response.data) {
+          // The error is coming from the backend
+          const backendErrors = error.response.data;
+          console.error('Registration error from backend:', backendErrors);
+
+          // Update the state with the registration errors
+          setRegistrationErrors(backendErrors);
+        }
       }
     }
   };
@@ -90,11 +106,11 @@ function AdminRegistrationPage() {
               <form onSubmit={handleSubmit}>
                 {Object.keys(formData).map((fieldName) => (
                   <div key={fieldName} className="field">
-                    <label htmlFor={fieldName}>{fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}:</label><br />
+                    <label htmlFor={fieldName}>{fieldName === 'UserType' ? 'User Type' : fieldName}:</label><br />
                     {fieldName === 'UserType' ? (
                       <select
                         name="UserType"
-                        value={formData.userType}
+                        value={formData.UserType}
                         onChange={handleChange}
                       >
                         <option value="">Select User Type</option>
@@ -132,6 +148,16 @@ function AdminRegistrationPage() {
                   <input type="submit" value="Register" className="btn btn-primary" />
                 </div>
               </form>
+              {registrationErrors && (
+                <div className="error-container">
+                  {/* Display errors to the user (customize this based on your UI) */}
+                  {Object.keys(registrationErrors).map((field) => (
+                    <p key={field} className="error-message">
+                      {`${field} error: ${registrationErrors[field][0]}`}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
           </article>
         </div>
