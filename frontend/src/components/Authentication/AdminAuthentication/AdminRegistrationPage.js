@@ -77,7 +77,7 @@ function AdminRegistrationPage() {
         console.log('Registration successful:', response);
         if (response.status === 302) {
           // Redirect to the login page
-          navigate('/admin-login');
+          navigate('/api/login');
         }
       } catch (error) {
         // Handle registration errors (e.g., display an error message)

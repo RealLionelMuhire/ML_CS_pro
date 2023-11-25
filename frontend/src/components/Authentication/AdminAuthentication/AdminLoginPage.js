@@ -8,12 +8,10 @@ import './AdminLoginPage.css';
 
 function AdminLoginPage() {
   const navigate = useNavigate();
-  // console.log("====authUath==>", useAuth())
-  // const { login, isAuthenticated } = useAuth();
   const login = useAuth()?.login;
-  const isAuthenticated = useAuth()?.isAuthenticated
+  const isAuthenticated = useAuth()?.isAuthenticated;
   const [formData, setFormData] = useState({
-    identifier: '',
+    email: '', // Updated 'identifier' to 'email'
     password: '',
     rememberMe: false,
   });
@@ -28,40 +26,30 @@ function AdminLoginPage() {
   };
 
   const handleLogin = async () => {
-    // Check if the identifier and password are provided
-    if (!formData.identifier || !formData.password) {
+    if (!formData.email || !formData.password) {
       setError('Please provide both username/email and password.');
       return;
     }
 
-    // Clear previous errors
     setError('');
 
     try {
-      // Call the API service for login
+      // Call the API service for login with 'email'
       const token = await loginUser({
-        identifier: formData.identifier,
+        email: formData.email, // Updated 'identifier' to 'email'
         password: formData.password,
       });
 
-      // Store the user token in local storage or a cookie
       localStorage.setItem('userToken', token);
-
-      // Call the login function from the context to update the authentication state
       login();
-
-      // Simulate a successful login for demonstration purposes
       navigate('/admin-dashboard');
     } catch (error) {
-      // Handle login errors (e.g., display an error message)
       setError('Incorrect password. Please try again.');
-      // Redirect to login page with error message
       navigate('/admin-login', { state: { errorMessage: 'Incorrect password. Please try again.' } });
     }
   };
 
   if (isAuthenticated) {
-    // Redirect to the admin dashboard if the user is already authenticated
     navigate('/admin-dashboard');
   }
 
@@ -80,9 +68,9 @@ function AdminLoginPage() {
                   <input
                     autoFocus
                     type="text"
-                    name="identifier"
+                    name="email" // Updated 'identifier' to 'email'
                     id="admin_identifier"
-                    value={formData.identifier}
+                    value={formData.email}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -96,7 +84,6 @@ function AdminLoginPage() {
                     onChange={handleInputChange}
                   />
                 </div>
-                {/* Additional fields can be added if needed */}
                 <div className="field checkbox-field">
                   <input
                     type="checkbox"
