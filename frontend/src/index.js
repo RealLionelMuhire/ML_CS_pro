@@ -1,14 +1,19 @@
-// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import the top-level Router
-import AppRouter from './components/Router'; // Import your Router component
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createRoot } from 'react-dom/client'; // Import from "react-dom/client"
+import { Provider } from 'react-redux';
+import store from './store';
+import AppRouter from './components/Router';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
-    <Router> {/* Use the top-level Router here */}
-      <AppRouter /> {/* Render your Router component */}
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <AppRouter />
+      </Router>
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
 );

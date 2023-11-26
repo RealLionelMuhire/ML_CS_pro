@@ -1,27 +1,28 @@
-import React, { createContext, useContext, useState } from 'react';
+// src/context/AuthContext.js
+import React, { createContext, useContext, useReducer } from 'react';
+import { useDispatch, useSelector, Provider } from 'react-redux';
+import store from '../store';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  return <Provider store={store}>{children}</Provider>;
+};
 
-  const login = () => {
-    // Implement login logic here
-    setAuthenticated(true);
+const useAuth = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+
+  const login = (user) => {
+    dispatch({ type: 'LOGIN', payload: { user } });
   };
 
   const logout = () => {
-    // Implement logout logic here
-    setAuthenticated(false);
+    dispatch({ type: 'LOGOUT' });
   };
 
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return { isAuthenticated, user, login, logout };
 };
-
-const useAuth = () => useContext(AuthContext);
 
 export { AuthProvider, useAuth };

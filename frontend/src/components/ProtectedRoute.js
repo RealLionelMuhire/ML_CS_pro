@@ -4,13 +4,9 @@ import { Navigate, Outlet, Route } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const ProtectedRoute = () => {
-  // const { isAuthenticated, isAdminAuthenticated } = useAuth();
+  const isAuthenticated = useAuth().isAuthenticated;
 
-  // Check for authentication based on route requirements
-  // const isAuthorized = adminRequired ? isAdminAuthenticated : isAuthenticated;
-  const isAuthorized = useAuth()?.isAuthenticated;
-
-  return isAuthorized ? <Outlet/> : <Navigate to="/admin-dashboard" />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/admin-dashboard" />;
 };
 
 export default ProtectedRoute;
