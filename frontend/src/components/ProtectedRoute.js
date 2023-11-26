@@ -8,9 +8,9 @@ const ProtectedRoute = () => {
 
   // Check for authentication based on route requirements
   // const isAuthorized = adminRequired ? isAdminAuthenticated : isAuthenticated;
-  const isAuthorized = null
+  const isAuthorized = useAuth()?.isAuthenticated;
 
-  return isAuthorized ? <Outlet/> : <Navigate to="/admin-login" />
+  return isAuthorized ? <Outlet/> : <Navigate to="/admin-dashboard" />
 };
 
 export default ProtectedRoute;

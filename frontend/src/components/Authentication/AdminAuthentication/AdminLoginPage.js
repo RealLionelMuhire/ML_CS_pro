@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
@@ -11,11 +11,17 @@ function AdminLoginPage() {
   const login = useAuth()?.login;
   const isAuthenticated = useAuth()?.isAuthenticated;
   const [formData, setFormData] = useState({
-    email: '', // Updated 'identifier' to 'email'
+    email: '',
     password: '',
     rememberMe: false,
   });
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/admin-dashboard');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,35 +36,45 @@ function AdminLoginPage() {
       setError('Please provide both username/email and password.');
       return;
     }
-
+  
     setError('');
-
+  
     try {
       // Call the API service for login with 'email'
-      const token = await loginUser({
-        email: formData.email, // Updated 'identifier' to 'email'
+      console.log("Loging in ...")
+      const response = await loginUser({
+        email: formData.email,
         password: formData.password,
       });
-
-      localStorage.setItem('userToken', token);
-      login();
-      navigate('/admin-dashboard');
+  
+      console.log('Backend response:', response);
+  
+      // Check for the 'message' key in the response
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Parsed Backend response:', responseData);
+        //trying redirection
+        navigate('/admin-dashboard');
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
     } catch (error) {
-      setError('Incorrect password. Please try again.');
-      navigate('/admin-login', { state: { errorMessage: 'Incorrect password. Please try again.' } });
+      console.error('Login error:', error);
+      setError('Login failed. Please try again.');
+      navigate('/admin-login', { state: { errorMessage: 'Login failed. Please try again.' } });
     }
   };
-
-  if (isAuthenticated) {
-    navigate('/admin-dashboard');
-  }
-
+  
   return (
     <div className="login-page">
       <Header />
       <main>
         <div className="login-container">
-          <article className="client-login">
+          {isAuthenticated && (
+            // Redirecting if authenticated
+            navigate('/admin-dashboard')
+          )}
+            <article className="client-login">
             <div className="login-form">
               <h2 className="logo">WELCOME TO ML CORPORATE SERVICES</h2>
               <p>For administrators only</p>

@@ -47,7 +47,7 @@ const loginUser = async (loginData) => {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': getCsrfToken(),
-        'Authorization': `Token ${getAuthToken()}`, // Include the authentication token
+        'Authorization': `Token ${getAuthToken()}`,
       },
       body: JSON.stringify(loginData),
     });
@@ -58,8 +58,8 @@ const loginUser = async (loginData) => {
       throw new Error(errorData.message || 'Login failed');
     }
 
-    const responseData = await response.json();
-    return responseData.token; // Adjust accordingly based on your authentication mechanism
+    return response;  // Return the entire response object
+
   } catch (error) {
     console.error('Error during login:', error.message);
     throw error;
