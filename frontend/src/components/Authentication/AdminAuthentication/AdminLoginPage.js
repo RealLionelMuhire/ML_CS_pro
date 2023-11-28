@@ -37,9 +37,9 @@ function AdminLoginPage({ isAuthenticated, loginAction }) {
       setError('Please provide both username/email and password.');
       return;
     }
-
+  
     setError('');
-
+  
     try {
       // Call the API service for login with 'email'
       console.log('Logging in ...');
@@ -47,22 +47,24 @@ function AdminLoginPage({ isAuthenticated, loginAction }) {
         email: formData.email,
         password: formData.password,
       });
-
+  
       console.log('Backend response:', response);
-
+  
       // Check for the 'message' key in the response
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log('Parsed Backend response:', responseData);
-
+      // if (response.ok) {
+      //   const responseData = await response.json();
+      //   console.log('Parsed Backend response:', responseData);
+  
         // Dispatch the login action with user data
-        loginAction(responseData.user);
-
-        // Redirect to the admin dashboard
-        navigate('/admin-dashboard');
-      } else {
-        setError('Login failed. Please check your credentials.');
-      }
+        loginAction(response.user_id);
+  
+        // Redirect to the admin dashboard only if not already authenticated
+        if (!isAuthenticated) {
+          navigate('/admin-dashboard');
+        }
+      // } else {
+      //   setError('Login failed. Please check your credentials.');
+      // }
     } catch (error) {
       console.error('Login error:', error);
       setError('Login failed. Please try again.');

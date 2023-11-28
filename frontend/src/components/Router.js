@@ -25,7 +25,7 @@ function AppRouter() {
       <Route path="/client-acceptance-form" element={<ClientAcceptanceForm1 />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route path="/admin-registration" element={<AdminRegistrationPage />} />
-      <Route path="/client-list" element={<ClientList />} />
+      {/* <Route path="/client-list" element={<ClientList />} /> */}
       <Route path="/find-client" element={<FindClientComponent />} />
       <Route path="/active-clients" element={<ActiveClientsComponent />} />
       <Route path="/appointment-scheduling" element={<AppointmentSchedulingComponent />} />

@@ -7,11 +7,14 @@ const getCsrfToken = () => {
   return cookieValue ? cookieValue.pop() : '';
 };
 
-// Function to get the authentication token from your application state or any storage
+// Function to get the authentication token from local storage
 const getAuthToken = () => {
-  // Replace this with the actual code to get the authentication token from your state or storage
-  // Example: return yourAuthTokenState;
-  return '';
+  return localStorage.getItem('authToken');
+};
+
+// Function to set the authentication token to local storage
+const setAuthToken = (token) => {
+  localStorage.setItem('authToken', token);
 };
 
 const registerUser = async (userData) => {
@@ -20,7 +23,6 @@ const registerUser = async (userData) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCsrfToken(),
         'Authorization': `Token ${getAuthToken()}`, // Include the authentication token
       },
       body: JSON.stringify(userData),
@@ -46,24 +48,62 @@ const loginUser = async (loginData) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCsrfToken(),
-        'Authorization': `Token ${getAuthToken()}`,
       },
       body: JSON.stringify(loginData),
     });
 
+    // Log the entire response object for inspection
+    console.log('Response status:', response.status);
+    console.log('Response ok:', response.ok);
     // Handle the response
+    const responseText = await response.text(); // Get the response text
+
+
+    console.log('Response text:', responseText); // Log the response text
+
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = responseText ? JSON.parse(responseText) : {};
       throw new Error(errorData.message || 'Login failed');
     }
 
-    return response;  // Return the entire response object
+    // Parse JSON once to get the data
+    const responseData = responseText ? JSON.parse(responseText) : {};
 
+    // Store the authentication token in local storage
+    setAuthToken(responseData.token);
+
+    return responseData;  // Return the parsed response data
   } catch (error) {
     console.error('Error during login:', error.message);
     throw error;
   }
 };
+
+
+const otherApiCall = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/some-endpoint/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCsrfToken(),
+        'Authorization': `Token ${getAuthToken()}`,
+      },
+    });
+
+    // Handle the response
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Request failed');
+    }
+
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error('Error during API call:', error.message);
+    throw error;
+  }
+};
+
 
 export { registerUser, loginUser };
