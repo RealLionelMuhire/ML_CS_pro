@@ -50,21 +50,17 @@ function AdminLoginPage({ isAuthenticated, loginAction }) {
   
       console.log('Backend response:', response);
   
-      // Check for the 'message' key in the response
-      // if (response.ok) {
-      //   const responseData = await response.json();
-      //   console.log('Parsed Backend response:', responseData);
-  
+      if (response.token) {
         // Dispatch the login action with user data
         loginAction(response.user_id);
-  
+
         // Redirect to the admin dashboard only if not already authenticated
         if (!isAuthenticated) {
           navigate('/admin-dashboard');
         }
-      // } else {
-      //   setError('Login failed. Please check your credentials.');
-      // }
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
     } catch (error) {
       console.error('Login error:', error);
       setError('Login failed. Please try again.');

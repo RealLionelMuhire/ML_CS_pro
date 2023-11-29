@@ -80,30 +80,30 @@ const loginUser = async (loginData) => {
 };
 
 
-const otherApiCall = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/some-endpoint/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCsrfToken(),
-        'Authorization': `Token ${getAuthToken()}`,
-      },
-    });
+// const otherApiCall = async () => {
+//   try {
+//     const response = await fetch(`${BASE_URL}/api/some-endpoint/`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'X-CSRFToken': getCsrfToken(),
+//         'Authorization': `Token ${getAuthToken()}`,
+//       },
+//     });
 
-    // Handle the response
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Request failed');
-    }
+//     // Handle the response
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       throw new Error(errorData.message || 'Request failed');
+//     }
 
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    console.error('Error during API call:', error.message);
-    throw error;
-  }
-};
+//     const responseData = await response.json();
+//     return responseData;
+//   } catch (error) {
+//     console.error('Error during API call:', error.message);
+//     throw error;
+//   }
+// };
 
 
 export { registerUser, loginUser };
