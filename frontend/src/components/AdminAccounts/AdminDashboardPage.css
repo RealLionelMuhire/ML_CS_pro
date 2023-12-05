@@ -17,30 +17,45 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  background-color: #f0f0f0; /* Change to your desired background color */
+  background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
 }
 
 .option {
-  border: 5px solid #000; /* Thick border */
+  border: 5px solid #000;
   padding: 20px;
   text-align: center;
-  background-color: #d3d3d3; /* Light Grey */
-  color: #00008b; /* Deep Blue */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Box shadow */
-  transition: background-color 0.3s; /* Transition effect */
-  font-family: Arial, sans-serif; /* Same font for icons and text */
-  border-radius: 10%; /* Round elements */
-  height: 150px; /* Adjusted the height to a more realistic value */
+  background-color: #d3d3d3;
+  color: #00008b;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif;
+  border-radius: 10%;
+  height: 150px;
+}
+
+.option.collapsed {
+  text-align: center;
+  background-color: #d3d3d3;
+  color: #00008b;
+  height: 80px;
+}
+
+.option.collapsed i.material-icons {
+  font-size: 24px;
 }
 
 .option:hover {
-  background-color: #90ee90; /* Light Green */
+  background-color: #90ee90;
+}
+
+.option.collapsed:hover {
+  background-color: #90ee90;
 }
 
 i.material-icons {
-  color: #00008b; /* Deep Blue */
-  font-size: 40px; /* Reduced the icon size to a more realistic value */
+  color: #00008b;
+  font-size: 40px;
 }
