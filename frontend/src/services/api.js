@@ -79,31 +79,47 @@ const loginUser = async (loginData) => {
   }
 };
 
+const forgotPassword = async (email) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/forgot-password/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
 
-// const otherApiCall = async () => {
-//   try {
-//     const response = await fetch(`${BASE_URL}/api/some-endpoint/`, {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'X-CSRFToken': getCsrfToken(),
-//         'Authorization': `Token ${getAuthToken()}`,
-//       },
-//     });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Forgot password request failed');
+    }
 
-//     // Handle the response
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.message || 'Request failed');
-//     }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error('Error during forgot password:', error.message);
+    throw error;
+  }
+};
 
-//     const responseData = await response.json();
-//     return responseData;
-//   } catch (error) {
-//     console.error('Error during API call:', error.message);
-//     throw error;
-//   }
-// };
+const resetPassword = async (token, newPassword) => {
+  try {
+    const csrfToken = getCsrfToken(); // Get CSRF token from your function or context
 
+    const response = await fetch(`${BASE_URL}/api/reset-password/${token}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken, // Include the CSRF token in the headers
+      },
+      body: JSON.stringify({ new_password: newPassword }),
+    });
 
-export { registerUser, loginUser };
+    // ... rest of the code
+  } catch (error) {
+    console.error('Error during password reset:', error.message);
+    throw error;
+  }
+};
+
+export { registerUser, loginUser, forgotPassword, resetPassword };

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../../services/api';
+import { loginUser, forgotPassword} from '../../../services/api';
 import { loginAction } from '../../../actions/authActions'; 
 import Header from '../../Common/Header';
 import Footer from '../../Common/Footer';
@@ -70,6 +70,26 @@ function AdminLoginPage({ isAuthenticated, loginAction }) {
     }
   };
   
+  const handleForgotPassword = async () => {
+    try {
+      // Call the API service for forget password
+      console.log('Sending forget password request ...');
+      const response = await forgotPassword(formData.email);
+      console.log('Forget password response:', response);
+
+      // Handle the response
+      if (response.message) {
+        // Inform the user that the reset link has been sent to their email
+        setError(`Password reset email sent to ${formData.email}`);
+      } else {
+        setError('Forget password request failed. Please check your email address.');
+      }
+    } catch (error) {
+      console.error('Forget password error:', error);
+      setError('Forget password request failed. Please try again.');
+    }
+  };
+  
   return (
     <div className="login-page">
       <Header />
@@ -125,7 +145,9 @@ function AdminLoginPage({ isAuthenticated, loginAction }) {
 
               <ul id="devise_links">
                 <li>
-                  <a href="/auth/password/new">Forgot your password?</a>
+                  <button type="button" onClick={handleForgotPassword}>
+                    Forgot your password?
+                  </button>
                 </li>
                 <li>
                   <Link to="/admin-registration">Register as Administrator</Link>
