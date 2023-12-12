@@ -14,12 +14,14 @@ import ActiveClientsComponent from './AdminAccounts/ActiveClientsComponent';
 import AppointmentSchedulingComponent from './AdminAccounts/AppointmentSchedulingComponent';
 import RegisterClientComponent from './AdminAccounts/RegisterClientComponent';
 import ProtectedRoute from './ProtectedRoute';
+import ForgetPassword from './Authentication/AdminAuthentication/ForgetPassword'
 
 function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/client-login" element={<ClientLoginPage />} />
+      <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/client-registration" element={<ClientRegistrationPage />} />
       <Route path="/client-dashboard" element={<ClientDashboardPage />} />
       <Route path="/client-acceptance-form" element={<ClientAcceptanceForm1 />} />

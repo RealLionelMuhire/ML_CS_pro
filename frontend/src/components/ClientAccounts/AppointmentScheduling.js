@@ -11,4 +11,3 @@ function AppointmentScheduling() {
 }
 
 export default AppointmentScheduling;
-
