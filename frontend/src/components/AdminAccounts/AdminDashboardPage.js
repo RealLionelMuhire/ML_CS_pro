@@ -1,61 +1,239 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../Common/Header';
-import Footer from '../Common/Footer';
-import './AdminDashboardPage.css';
+import * as React from 'react';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiDrawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { mainListItems, secondaryListItems } from './listItems';
+import Chart from './Chart';
+import Deposits from './Deposits';
+import Orders from './Orders';
+import { getDashboardData } from '../../services/api';
 
-function AdminDashboardPage() {
-  const [collapsedOptions, setCollapsedOptions] = useState({});
-
-  const toggleCollapse = (option) => {
-    setCollapsedOptions((prevCollapsedOptions) => ({
-      ...prevCollapsedOptions,
-      [option]: !prevCollapsedOptions[option],
-    }));
-  };
-
-  const options = [
-    { path: '/find-client', icon: 'search', text: 'Find Client Record' },
-    { path: '/active-clients', icon: 'person', text: 'Active Clients' },
-    { path: '/appointment-scheduling', icon: 'calendar_today', text: 'Appointment Scheduling' },
-    { path: '/register-client', icon: 'person_add', text: 'Register a Client' },
-    { path: '/work-on-client-documents', icon: 'description', text: 'Work on Client Documents' },
-    { path: '/reports', icon: 'description', text: 'Reports' },
-    { path: '/set-schedule', icon: 'schedule', text: 'Set a Schedule' },
-    { path: '/data-management', icon: 'storage', text: 'Data Management' },
-    { path: '/configure-metadata', icon: 'settings', text: 'Configure Metadata' },
-    { path: '/system-administration', icon: 'build', text: 'System Administration' },
-    { path: '/messaging', icon: 'message', text: 'Messaging' },
-    { path: '/view-logs-activities', icon: 'history', text: 'View Logs and Activities' },
-    { path: '/alerts', icon: 'notifications', text: 'Alerts' },
-    { path: '/activate-deactivate', icon: 'power_settings_new', text: 'Activate and Deactivate the Client' },
-    { path: '/add-review-suggestion', icon: 'rate_review', text: 'Add a Review or Suggestion for the App' },
-  ];
-
+function Copyright(props) {
   return (
-    <div className="dashboard-page">
-      <Header />
-      <main>
-        <div className="container">
-          <div className="dashboard">
-            {options.map((option) => (
-              <Link to={option.path} key={option.path}>
-                <div
-                  className={`option ${collapsedOptions[option.path] ? 'collapsed' : ''}`}
-                  onClick={() => toggleCollapse(option.path)}
-                >
-                  <i className="material-icons">{option.icon}</i>
-                  <br />
-                  {!collapsedOptions[option.path] && option.text}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="http://mlcorporateservices.com/">
+        mlcorporateservices
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default AdminDashboardPage;
+
+
+const drawerWidth = 240;
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    '& .MuiDrawer-paper': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      boxSizing: 'border-box',
+      ...(!open && {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+          width: theme.spacing(9),
+        },
+      }),
+    },
+  }),
+);
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
+
+function Dashboard() {
+  const [open, setOpen] = React.useState(true);
+  const [dashboardData, setDashboardData] = React.useState(null); // State for storing dashboard data
+  const [error, setError] = React.useState('');
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  // Function to fetch dashboard data
+  const fetchDashboardData = async () => {
+    try {
+      const data = await getDashboardData();
+      setDashboardData(data);
+
+      // Save dashboard data to local storage
+      localStorage.setItem('dashboardData', JSON.stringify(data));
+    } catch (error) {
+      setError('Failed to fetch dashboard data');
+      console.error('Dashboard data fetch error:', error);
+    }
+  };
+
+  React.useEffect(() => {
+    // Check if dashboard data exists in local storage
+    const storedData = localStorage.getItem('dashboardData');
+
+    if (storedData) {
+      setDashboardData(JSON.parse(storedData));
+    } else {
+      // Fetch data when the component mounts
+      fetchDashboardData();
+    }
+  }, []);
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="absolute" open={open}>
+          <Toolbar
+            sx={{
+              pr: '24px', // keep right padding when drawer closed
+            }}
+          >
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+            >
+              Dashboard
+            </Typography>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">
+            {mainListItems}
+            <Divider sx={{ my: 1 }} />
+            {secondaryListItems}
+          </List>
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+        >
+          <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+              {/* Chart */}
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Chart />
+                </Paper>
+              </Grid>
+              {/* Recent Deposits */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Orders />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ pt: 4 }} />
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
+}
+
+export default Dashboard;

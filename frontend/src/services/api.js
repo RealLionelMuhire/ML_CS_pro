@@ -122,4 +122,37 @@ const resetPassword = async (token, newPassword) => {
   }
 };
 
-export { registerUser, loginUser, forgotPassword, resetPassword };
+const saveDashboardData = (data) => {
+  localStorage.setItem('dashboardData', JSON.stringify(data));
+};
+
+const getDashboardData = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/dashboard-data/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${getAuthToken()}`, // Include the authentication token
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to fetch dashboard data');
+    }
+
+    const responseData = await response.json();
+
+    // Save data to local storage only if the API call is successful
+    saveDashboardData(responseData);
+
+    return responseData;
+  } catch (error) {
+    console.error('Error during dashboard data fetch:', error.message);
+    throw error;
+  }
+};
+
+
+
+export { registerUser, loginUser, forgotPassword, resetPassword, getDashboardData, saveDashboardData };
